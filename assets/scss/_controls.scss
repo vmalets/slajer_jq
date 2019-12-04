@@ -1,0 +1,45 @@
+.controls {
+  display: none;
+
+  color: rgba(120, 160, 222, 0.7);
+
+  font-size: 60px;
+}
+
+.control {
+  position: absolute;
+  z-index: 20;
+
+  display: flex;
+
+  cursor: pointer;
+  transition: color 1s;
+  transition: opacity 2s;
+  &:hover,
+  &:active {
+    opacity: 1;
+  }
+}
+.pause {
+  top: calc(50% - 25vh);
+  left: calc(50% - 18vh);
+
+  opacity: 0;
+
+  font-size: 40vh;
+}
+.prev,
+.next {
+  top: calc(50% - 5vh);
+
+  transition: text-shadow 1s;
+  &:hover {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 1);
+  }
+}
+.prev {
+  left: 50px;
+}
+.next {
+  right: 50px;
+}

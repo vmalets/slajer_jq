@@ -1,0 +1,146 @@
+@import url(../../lib/normalize.css/normalize.css);
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+}
+
+.slides {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  list-style-type: none;
+}
+
+.slide {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: opacity 2s;
+  -o-transition: opacity 2s;
+  transition: opacity 2s;
+  opacity: 0;
+  background: #333333;
+}
+
+.slide.active {
+  z-index: 2;
+  opacity: 1;
+}
+
+.slide:nth-of-type(1) {
+  background-image: url(../img/img1.jpg);
+}
+
+.slide:nth-of-type(2) {
+  background-image: url(../img/img2.jpg);
+}
+
+.slide:nth-of-type(3) {
+  background-image: url(../img/img3.jpg);
+}
+
+.slide:nth-of-type(4) {
+  background-image: url(../img/img4.jpg);
+}
+
+.slide:nth-of-type(5) {
+  background-image: url(../img/img5.jpg);
+}
+
+.indicators {
+  position: absolute;
+  z-index: 10;
+  bottom: 50px;
+  display: none;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.indicator {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  margin: 15px 4%;
+  cursor: pointer;
+  -webkit-transition: background-color 1s;
+  -o-transition: background-color 1s;
+  transition: background-color 1s;
+  -webkit-transition: -webkit-box-shadow 1s;
+  transition: -webkit-box-shadow 1s;
+  -o-transition: box-shadow 1s;
+  transition: box-shadow 1s;
+  transition: box-shadow 1s, -webkit-box-shadow 1s;
+  border: 2px solid rgba(120, 160, 222, 0.7);
+  border-radius: 20px;
+  -webkit-box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+          box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+.indicator.active {
+  background-color: rgba(120, 160, 222, 0.7);
+}
+
+.indicator:hover, .indicator:active {
+  border-color: rgba(255, 255, 255, 0.7);
+  -webkit-box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.7);
+          box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.7);
+}
+
+.controls {
+  display: none;
+  color: rgba(120, 160, 222, 0.7);
+  font-size: 60px;
+}
+
+.control {
+  position: absolute;
+  z-index: 20;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  -webkit-transition: color 1s;
+  -o-transition: color 1s;
+  transition: color 1s;
+  -webkit-transition: opacity 2s;
+  -o-transition: opacity 2s;
+  transition: opacity 2s;
+}
+
+.control:hover, .control:active {
+  opacity: 1;
+}
+
+.pause {
+  top: calc(50% - 25vh);
+  left: calc(50% - 18vh);
+  opacity: 0;
+  font-size: 40vh;
+}
+
+.prev,
+.next {
+  top: calc(50% - 5vh);
+  -webkit-transition: text-shadow 1s;
+  -o-transition: text-shadow 1s;
+  transition: text-shadow 1s;
+}
+
+.prev:hover,
+.next:hover {
+  text-shadow: 0 0 20px white;
+}
+
+.prev {
+  left: 50px;
+}
+
+.next {
+  right: 50px;
+}
