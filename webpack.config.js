@@ -5,7 +5,18 @@ module.exports = {
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, './assets/js/'),
-    publicPath: '/',
+    publicPath: '/assets/js',
   },
-  mode: 'development'
+  devServer: {
+    overlay: true
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: '/node_modules/'
+      }
+    ]
+  },
 };

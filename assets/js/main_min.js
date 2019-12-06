@@ -72,7 +72,7 @@ clickIndicatorBtn = (e) => {
   gotonSlide(+e.target.getAttribute('data-slide-to'));
 };
 
-$indContainer.on('click', clickIndicatorBtn);
+$indContainer.on('click', '.indicator', clickIndicatorBtn);
 
 pressKeyControl = (e) => {
   if (e.key === LEFT_ARROW) clickPrevPlayBtn();
