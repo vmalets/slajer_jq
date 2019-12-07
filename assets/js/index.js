@@ -1,1 +1,1 @@
-import './main_min'
+import './main'

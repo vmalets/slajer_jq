@@ -1,1 +1,85 @@
-!function(e){var t={};function n(o){if(t[o])return t[o].exports;var l=t[o]={i:o,l:!1,exports:{}};return e[o].call(l.exports,l,l.exports,n),l.l=!0,l.exports}n.m=e,n.c=t,n.d=function(e,t,o){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:o})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var o=Object.create(null);if(n.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var l in e)n.d(o,l,function(t){return e[t]}.bind(null,l));return o},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="/assets/js",n(n.s=0)}([function(e,t,n){"use strict";n.r(t);n(1)},function(e,t){var n,o=$(".slide"),l=$(".indicators"),i=$(".indicator"),r=$("#pause"),c=$("#prev"),a=$("#next"),u=!0,s=o.length,d=0;$(".controls").css("display","block"),l.css("display","flex"),gotonSlide=function(e){$(o[d]).toggleClass("active"),$(i[d]).toggleClass("active"),d=(e+s)%s,$(o[d]).toggleClass("active"),$(i[d]).toggleClass("active")},gotoPrevSlide=function(){gotonSlide(d-1)},gotoNextSlide=function(){gotonSlide(d+1)},pauseSlideShow=function(){u&&(clearInterval(n),r.removeClass("fa-pause"),r.addClass("fa-play"),u=!u)},playSlideShow=function(){n=setInterval(gotoNextSlide,3e3),r.removeClass("fa-play"),r.addClass("fa-pause"),u=!u},clickPausePlayBtn=function(){return u?pauseSlideShow():playSlideShow()},clickPrevPlayBtn=function(){pauseSlideShow(),gotoPrevSlide()},clickNextPlayBtn=function(){pauseSlideShow(),gotoNextSlide()},r.on("click",clickPausePlayBtn),c.on("click",clickPrevPlayBtn),a.on("click",clickNextPlayBtn),clickIndicatorBtn=function(e){pauseSlideShow(),gotonSlide(+e.target.getAttribute("data-slide-to"))},l.on("click",".indicator",clickIndicatorBtn),pressKeyControl=function(e){"ArrowLeft"===e.key&&clickPrevPlayBtn(),"ArrowRight"===e.key&&clickNextPlayBtn()," "===e.key&&clickPausePlayBtn()},$(document).on("keydown",pressKeyControl),n=setInterval(gotoNextSlide,3e3)}]);
+let $slideItems = $('.slide');
+let $indContainer = $('.indicators');
+let $indItems = $('.indicator');
+let $pauseBtn = $('#pause');
+let $prevBtn = $('#prev');
+let $nextBtn = $('#next');
+let playbackStatus = true;
+let slideLenght = $slideItems.length;
+let currentSlide = 0;
+let carouselInterval = 3000;
+let slideInterval;
+
+const LEFT_ARROW = 'ArrowLeft';
+const RIGHT_ARROW = 'ArrowRight';
+const SPACE = ' ';
+
+$('.controls').css('display', 'block');
+$indContainer.css('display', 'flex');
+
+gotonSlide = (n) => {
+  $($slideItems[currentSlide]).toggleClass('active');
+  $($indItems[currentSlide]).toggleClass('active');
+  currentSlide = (n + slideLenght) % slideLenght;
+  $($slideItems[currentSlide]).toggleClass('active');
+  $($indItems[currentSlide]).toggleClass('active');
+};
+
+gotoPrevSlide = () => {
+  gotonSlide(currentSlide - 1);
+};
+
+gotoNextSlide = () => {
+  gotonSlide(currentSlide + 1);
+};
+
+
+pauseSlideShow = () => {
+  if (playbackStatus) {
+    clearInterval(slideInterval);
+    $pauseBtn.removeClass('fa-pause');
+    $pauseBtn.addClass('fa-play');
+    playbackStatus = !playbackStatus;
+  }
+};
+
+playSlideShow = () => {
+  slideInterval = setInterval(gotoNextSlide, carouselInterval);
+  $pauseBtn.removeClass('fa-play');
+  $pauseBtn.addClass('fa-pause');
+  playbackStatus = !playbackStatus;
+};
+
+clickPausePlayBtn = () => playbackStatus ? pauseSlideShow() : playSlideShow();
+
+clickPrevPlayBtn = () => {
+  pauseSlideShow();
+  gotoPrevSlide();
+};
+
+clickNextPlayBtn = () => {
+  pauseSlideShow();
+  gotoNextSlide();
+
+};
+
+$pauseBtn.on('click', clickPausePlayBtn);
+$prevBtn.on('click', clickPrevPlayBtn);
+$nextBtn.on('click', clickNextPlayBtn);
+
+clickIndicatorBtn = (e) => {
+  pauseSlideShow();
+  gotonSlide(+e.target.getAttribute('data-slide-to'));
+};
+
+$indContainer.on('click', '.indicator', clickIndicatorBtn);
+
+pressKeyControl = (e) => {
+  if (e.key === LEFT_ARROW) clickPrevPlayBtn();
+  if (e.key === RIGHT_ARROW) clickNextPlayBtn();
+  if (e.key === SPACE) clickPausePlayBtn();
+};
+
+$(document).on('keydown', pressKeyControl);
+
+slideInterval = setInterval(gotoNextSlide, carouselInterval);

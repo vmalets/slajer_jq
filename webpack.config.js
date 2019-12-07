@@ -3,7 +3,7 @@ var path = require('path');
 module.exports = {
   entry: './assets/js/index.js',
   output: {
-    filename: 'main.js',
+    filename: 'main_min.js',
     path: path.resolve(__dirname, './assets/js/'),
     publicPath: '/assets/js',
   },
